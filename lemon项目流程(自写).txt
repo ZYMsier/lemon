@@ -1,0 +1,22 @@
+一、项目流程：
+      原型图
+      评审
+      ui
+      框架
+      后端
+      联调
+      技术栈
+      接口文档
+二、集合 
+    集合一、iconlist
+         icon图标
+    集合二、classify
+        分类的集合{
+             当前图标    收入||支出
+              }  
+三、大概
+user   classify   iconlist
+         user.js --->classifyApi(index.js)  
+                   |---->classify.js   
+四、知识点：
+   1.{$in:["*",user]}    查询一个键下的多个值
