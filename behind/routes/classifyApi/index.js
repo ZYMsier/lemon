@@ -7,7 +7,7 @@ var iconlist = function(req, res, next) {
         if (result.length > 0) {
             res.send({ code: 0, message: "查询成功", data: result })
         } else {
-            res.send({ code: 1, message: "查询失败" })
+            res.send({ code: 3, message: "查询失败" })
         }
     });
 }
@@ -43,7 +43,20 @@ var addclassify = function(req, res, next) {
         });
     }
 }
+var getClassify = function(req, res, next) {
+    var parmas = req.query;
+    type = parmas.type * 1,
+        user = parmas.user;
+    mongodb.find(dbBase, dbClassifyColl, { type: type, user: { $in: ["*", user] } }, function(result) {
+        if (result) {
+            res.send({ code: 0, message: "查询成功", data: result })
+        } else {
+            res.send({ code: 3, message: "查询失败" })
+        }
+    });
+}
 module.exports = {
     iconlist: iconlist,
-    addclassify: addclassify
+    addclassify: addclassify,
+    getClassify: getClassify
 };

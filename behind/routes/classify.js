@@ -6,4 +6,5 @@ router.get('/classify/iconlist', classify.iconlist);
 //添加分类的接口
 router.post('/classify/addclassify', classify.addclassify);
 //查询分类的接口
+router.get('/classify/getClassify', classify.getClassify);
 module.exports = router;
