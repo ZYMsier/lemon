@@ -3,6 +3,7 @@
 .mui-inner-wrap{
 	@include box_flex;
 	@include direction(column);
+	font-size:pxTorem(16px);
 	header{
 		height:pxTorem(129px);
 		background: yellow;
@@ -48,4 +49,207 @@
 		padding: 0 pxTorem(10px);
 		@include sizing;
 	}
+	.mui-tab{
+		width: 100%;
+		height:pxTorem(44px);
+		background: white;		
+		@include box_flex;
+		padding:0 pxTorem(10px);
+		@include justify(space-between);
+		@include sizing;
+		@include align;
+		>div{
+			width: pxTorem(100px);
+			height:pxTorem(30px);
+			border:1px solid #000;
+			border-radius: 20%;
+			overflow: hidden;
+			@include box_flex;
+			@include align;
+			span{
+				@include box_flex;
+				line-height:pxTorem(30px);
+				@include justify;
+				flex: 1;
+			}
+			span.active{
+				background: yellow;
+			}
+		}
+		
+	}
+	.mui-content{
+		width: 100%;
+		flex:1;
+		position: relative;
+		.mui-navigate-right{
+			@include box_flex;
+			>div:nth-child(1){
+				@include box_flex;
+				p{
+					margin-left:pxTorem(5px);
+					margin-top:pxTorem(3px);
+					color:#000;
+				}
+			}
+			>div:nth-child(2){
+				@include box_flex;
+				@include flex;
+				dl{
+					@include flex;
+					@include box_flex;
+					@include direction(column);
+					@include align;
+					@include justify;
+				}
+				dl.muiPay{
+					color: red;
+				}
+				dl.income{
+					color: green;
+				}
+				dl.balance{
+					color: #888888;
+				}
+			}
+		}
+		.mui-collapse-pay{
+			.mui-collapse-type{
+				color:red;
+				font-size: pxTorem(20px);
+				font-weight: 600;
+			}
+			.mui-slide-list{
+				width: 100%;
+				@include box_flex;
+				@include justify(space-between);
+				>div:nth-child(2){
+					@include flex;
+					margin-left:pxTorem(10px);
+				}
+			}
+		}
+		.mui-bill-month{
+			.mui-bill-month-title{
+				height:pxTorem(44px);
+				width: 100%;
+				@include box_flex;
+				@include justify(space-between);
+				@include align;
+				padding:0 pxTorem(10px);
+				@include sizing;
+			}
+			.mui-bill-month-list{
+				@include box_flex;
+				@include justify(space-between);
+				@include align;
+				padding:0 pxTorem(10px);
+				@include sizing;
+				>div:nth-child(2){
+					@include flex;
+				}
+			}
+			.mui-table-view-cell-pay{
+				.mui-price{
+					color:red;
+				}
+			}
+		}
+	}
 }
+.mui-chart{
+	display: none;
+}
+.mui-bill-year{
+	display: none;
+}
+//侧边栏样式
+.mui-scroll-wrapper{
+	font-size: pxTorem(16px);
+	background: white;
+	.mui-scroll{
+		padding:0 pxTorem(10px);
+		@include sizing;
+	}
+	.mui-aside-title{
+		width: 100%;
+		border-left: 2px solid yellow;
+		padding-left:pxTorem(10px);
+		@include sizing;
+		margin-top:pxTorem(10px);
+		font-weight: bold;
+	}
+	.mui-aside-list{
+		@include box_flex;
+		flex-wrap: wrap;
+		margin-bottom:pxTorem(10px);
+		li{
+			padding:pxTorem(3px) pxTorem(10px);
+			@include sizing;
+			boder:1px solid #000;
+			border-radius:pxTorem(10px);
+			margin:pxTorem(3px) pxTorem(10px);
+		}
+		li.asideActive{
+			border:1px solid yellow;
+		}
+	}
+	.aside-btns{
+		width: 100%;
+		@include box_flex;
+		@include justify ;
+		@include align;
+		span{
+			display: inline-block;
+			height:pxTorem(30px);
+			width: pxTorem(80px);
+			background: #CACACA;
+			line-heihgt:pxTorem(30px);
+			text-align: center;
+			margin:0 pxTorem(5px);
+			border-radius: pxTorem(10px);
+		}
+		span.asideSure{
+			background: yellow;
+		}
+	}
+}
+
+// 		.top{
+	// 			width: 100%;
+	// 			@include box_flex;
+	// 			background: #ccc;
+	// 			#btn{
+	// 				width: pxTorem(54px);
+	// 				heihgt:pxTorem(33px);
+	// 				background: url(../img/button.jpg) no-repeat 100% 60%;
+	// 				color: white;
+	// 			}
+	// 		}
+	
+	
+	
+	
+// 	footer{
+// 		width: 100%;
+// 		height: pxTorem(50px);
+// 		@include box_flex;
+// 		background: white;
+// 		dl{
+// 			width: 25%;
+// 			height: pxTorem(50px);
+// 			@include box_flex;
+// 			@include direction(column);
+// 			@include justify(space-between);
+// 			@include align;
+// 			dt{
+// 				img{
+// 					width: 30px;
+// 					height:pxTorem(30px);
+// 				}
+// 			}
+// 			dd{
+// 				font-size: pxTorem(12px);
+// 			}
+// 		}
+// 	}
