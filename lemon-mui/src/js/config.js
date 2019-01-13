@@ -1,9 +1,11 @@
 require.config({
-	baseUrl:"js/",
+	baseUrl:"/js/",
 	paths:{
 		"mui":"libs/mui.min",
 		"picker":"libs/mui.picker.min",
-		"poppicker":"libs/mui.poppicker"
+		"poppicker":"libs/mui.poppicker",
+		"format":"common/format",
+		"getuser":'common/getuser'
 	},
 	shim:{
 		"picker":{deps:['mui']},

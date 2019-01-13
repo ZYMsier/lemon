@@ -76,7 +76,9 @@ var getBill = function(req, res, next) {
         } else {
             res.send({ code: 1, message: "查询失败" })
         }
-    });
+    }, sort({
+        time: -1
+    }));
 }
 module.exports = {
     billlist: billlist,

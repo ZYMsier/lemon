@@ -4,6 +4,23 @@
 	@include box_flex;
 	@include direction(column);
 	font-size:pxTorem(16px);
+	position:relative;
+	#box{
+		position: absolute;
+		left:50%;
+		margin-left:-50px;
+		bottom:pxTorem(40px);
+		z-index: 20;
+		width: pxTorem(100px);
+		height:pxTorem(100px);
+		border-radius: 50%;
+		background: yellow;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		color: white;
+		font-size: pxTorem(50px);
+	}
 	header{
 		height:pxTorem(129px);
 		background: yellow;

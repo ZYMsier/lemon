@@ -106,7 +106,11 @@ require(['./js/config.js'],function(){
 			}else{
 				document.querySelector('[data-type="pay"]').classList.remove('asideActive');
 			}
-		})
+		});
+		//点击跳转添加分类页面
+		document.querySelector('#box').addEventListener('tap', function() {
+		    location.href='./page/add.html';
+		});
 	});
 });
 

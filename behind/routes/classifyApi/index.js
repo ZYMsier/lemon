@@ -13,10 +13,10 @@ var iconlist = function(req, res, next) {
 }
 var addclassify = function(req, res, next) {
     var parmas = req.body;
-    iname = parmas.iname,
-        cname = parmas.cname,
-        type = parmas.type,
-        user = parmas.user;
+    iname = parmas.iname, //class名
+        cname = parmas.cname, //水果
+        type = parmas.type, //收入||支出
+        user = parmas.user; //user的id
     if (!iname || !cname || !type || !user) {
         res.send({ code: 2, message: "缺少参数" });
     } else {

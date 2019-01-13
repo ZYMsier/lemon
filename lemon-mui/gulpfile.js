@@ -12,7 +12,25 @@ gulp.task('watch',function(){
 gulp.task('server',function(){
 	return gulp.src('./src')
 	.pipe(server({
-		port:8000
+		port:8000,
+		open:true,
+		proxies:[{//iconlist
+			source:"/classify/iconlist",
+			target:"http://localhost:3000/classify/classify/iconlist"
+		},{//添加用户
+			source:"/users/addUser",
+			target:"http://localhost:3000/users/users/addUser"
+		},{//添加分类
+			source:"/classify/addclassify",
+			target:"http://localhost:3000/classify/classify/addclassify"
+		},{//查询分类
+			source:"/classify/getClassify",
+			target:"http://localhost:3000/classify/classify/getClassify"
+		},
+		{//添加
+			source:"/bill/billlist",
+			target:"http://localhost:3000/bill/bill/billlist"
+		}]
 	}));
 });
 gulp.task('dev',gulp.series('sass','server','watch'));

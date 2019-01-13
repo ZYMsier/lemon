@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/add.css">
+		<link rel="stylesheet" href="../css/mui.picker.min.css">
+		<link rel="stylesheet" href="../css/mui.poppicker.css">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="wrap">
+			<header>
+				<!-- tab切换 -->
+				<div class="tab">
+					<span class="mui-icon mui-icon-arrowleft"></span>
+					<div>
+						<div class="list">
+							<span class="active" data-type="1">支出</span>
+							<span  data-type="2">收入</span>
+						</div>
+					</div>
+					<span></span>
+				</div>
+				<!-- 输入框 -->
+				<div class="input">
+					<input type="text" placeholder="0.00">
+				</div>
+			</header>
+			<div class="mui-slider">
+                <div class="mui-slider-group"></div>
+            </div>
+			<div class="time">
+				<span class="mui-icon mui-icon-starhalf"></span>
+				<span id="billtime">11月11日</span>
+			</div>
+			<div class="number">
+				<ul class="keycord">
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>.</li>
+					<li>0</li>
+					<li>X</li>
+				</ul>
+				<div id="finish">完成</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/libs/require.js" data-main="../js/page/add.js"></script>
+</html>

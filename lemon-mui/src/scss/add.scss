@@ -1,0 +1,117 @@
+@import "common.scss";
+@import "_minix.scss";
+.wrap{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	header{
+		width: 100%;
+		height: pxTorem(100px);
+		display: flex;
+		flex-direction: column;
+		background: yellow;
+		.tab{
+			width: 100%;
+			height: pxTorem(44px);
+			display: flex;
+			padding:0 pxTorem(10px);
+			@include sizing;
+			@include align;
+			span{
+				width: pxTorem(50px);
+			}
+			>div{
+				flex: 1;
+				display: flex;
+				@include align;
+				@include justify;
+				>div{
+					height: pxTorem(30px);
+					width:pxTorem(100px) ;
+					display: flex;
+					@include align;
+					@include justify;
+					border:1px solid #000;
+					border-radius: pxTorem(10px);
+					overflow:hidden;
+					span{
+						line-height: pxTorem(30px);
+						text-align: center;
+						flex: 1;
+					}
+					span.active{
+						background: #000;
+						color: yellow;
+					}
+				}
+			}
+		}
+	    .input{
+			height: pxTorem(40px);
+			width: 100%;
+			input{
+				background: transparent;
+				border:none;
+				border-bottom:1px solid #000;
+				text-align: center;
+			}
+		}
+	}
+	.mui-slider{
+		.mui-slider-group{
+			.mui-slider-item{
+				>div{
+					@include box_flex;
+					flex-wrap:wrap;
+					dl{
+						width: 25%;
+						height: pxTorem(80px);
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						dt{
+							width: pxTorem(40px);
+							height: pxTorem(40px);
+							text-align: center;
+							background: #888888;
+							border-radius: 100%;
+							line-height: pxTorem(40px);
+						}
+						dd{
+							font-size:pxTorem(14px);
+						}
+					}
+				}
+			}
+		}
+	}
+	.number{
+		width: 100%;
+		height: pxTorem(160px);
+		background: white;
+		margin-top:pxTorem(20px);
+		display: flex;
+		ul{
+			flex: 1;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			li{
+				width: 33.3%;
+				height: pxTorem(39px);
+				border:1px solid #000;
+				line-height: pxTorem(38px);
+				text-align: center;
+			}
+		}
+		#finish{
+			width: pxTorem(60px);
+			height: pxTorem(160px);
+			background: yellow;
+			line-height: pxTorem(160px);
+			text-align: center;
+		}
+	}
+}

@@ -7,11 +7,12 @@ var dbColl = "user";
 router.get('/', function(req, res, next) {
     res.send('respond with a resource');
 });
+//添加用户
 router.post('/users/addUser', function(req, res, next) {
     var name = req.body.name;
-    mongodb.find(dbBase, dbColl, { name: name }, function(result) {
-        if (result.length > 0) {
-            res.send({ code: 0, message: "查询成功", data: result })
+    mongodb.insert(dbBase, dbColl, { name: name }, function(result) {
+        if (result) {
+            res.send({ code: 0, message: "查询成功", id: result.ops[0]._id })
         } else {
             res.send({ code: 1, message: "查询失败" })
         }
