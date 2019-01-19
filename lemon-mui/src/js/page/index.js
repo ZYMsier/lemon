@@ -1,7 +1,7 @@
 require(['./js/config.js'],function(){
-	require(['mui','picker','poppicker'],function(mui){
+	require(['mui','getuser','moment','picker','poppicker'],function(mui,getuser,moment){
 		mui.init();
-		var picker,dtPicker,type,
+		var picker,dtPicker,type,payhtml='',incomehtml='',classifyArr=[],
 		    nowYear=new Date().getFullYear(),//年
 			nowMonth=new Date().getMonth()+1,//月
 			selectType=document.querySelector('#selectType'),
@@ -9,12 +9,77 @@ require(['./js/config.js'],function(){
 			muiBill=document.querySelector('.mui-bill'),
 			muiChart=document.querySelector('.mui-chart'),
 			billYear=document.querySelector('.mui-bill-year'),
-			billMonth=document.querySelector('.mui-bill-month');
+			billMonth=document.querySelector('.mui-bill-month'),
+			pay=document.querySelector('#mui-aside-list-pay'),
+			income=document.querySelector('#mui-aside-list-income');
 		init();
 		function init(){
 			 picker = new mui.PopPicker();
 			 picker.setData([{ value: 'year', text: '年' }, { value: 'month', text: '月' }]);
 			 dtPicker = new mui.DtPicker({ type: "month" });
+			 loadClassify();
+		}
+		function loadClassify(){
+			mui.ajax('/classify/getClassify',{
+				data:{
+					user:getuser(),
+				},
+				success:function(data){
+					if(data.code==0){
+						data.data.forEach(function(item){
+							classifyArr.push(item.cname);
+							if(item.type==1){
+								payhtml+=`<li>${item.cname}</li>`;
+							}else{
+								incomehtml+=`<li>${item.cname}</li>`;
+							}
+						});
+						pay.innerHTML=payhtml;
+						income.innerHTML=incomehtml;
+					}
+					loadbill();
+				}
+			});
+			
+		};
+		function loadbill(){
+			console.log(classifyArr)
+			var name=classifyArr.join(',');
+			console.log(name);
+			mui.ajax('/bill/getBill',{
+				data:{
+					user:getuser(),
+					time:selectDate.innerHTML,
+					name:name
+				},
+				success:function(data){
+					var arrTarget=[];
+					if(data.code==0){
+						var obj={};
+						data.data.forEach(function(item){
+							console.log(item);
+							var time=moment(item.time).utc().format('MM-DD');
+							console.log(time);
+							if(!obj[time]){
+								obj[time]={
+									time:time,
+									totalMoney:0,
+									list:[]
+								};
+							}
+							obj[time].list.push(item);
+							console.log(obj);
+							if(item.type=='1'){
+								obj[time].totalMoney+=item.money*1;
+							}
+						});
+						for(var i in obj){
+							arrTarget.push(obj[i]);
+						}
+						console.log(arrTarget)
+					}
+				}
+			})
 		}
 		addEvent();
 		function addEvent(){

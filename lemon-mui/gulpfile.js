@@ -30,6 +30,10 @@ gulp.task('server',function(){
 		{//添加
 			source:"/bill/billlist",
 			target:"http://localhost:3000/bill/bill/billlist"
+		},
+		{//添加
+			source:"/bill/getBill",
+			target:"http://localhost:3000/bill/bill/getBill"
 		}]
 	}));
 });

@@ -1,5 +1,5 @@
 require(['../js/config.js'],function(){
-	require(['mui','format','getuser','picker','poppicker'],function(mui,format,getuser){
+	require(['mui','format','getuser','getParams','picker','poppicker'],function(mui,format,getuser,getParams){
 		mui.init();
 		var slidergroup=document.querySelector('.mui-slider-group'),
 		    addClassify=document.querySelector('#addClassify'),
@@ -46,7 +46,7 @@ require(['../js/config.js'],function(){
 			btn.addEventListener('tap',function(){
 				var iname=addClassify.className;
 				var cname=input.value;
-				var type=1;
+				var type=getParams().type;
 				user=getuser();
 				//添加分类
 				mui.ajax('/classify/addclassify',{
@@ -59,8 +59,7 @@ require(['../js/config.js'],function(){
 					},
 					success:function(data){
 						if(data.code==0){
-							console.log(data.code);
-							location.href='./add.html';
+							location.href='./add.html?type='+type+'&user='+user;
 						}
 					}
 				})

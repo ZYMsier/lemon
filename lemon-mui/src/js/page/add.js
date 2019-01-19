@@ -1,7 +1,7 @@
 require(['../js/config.js'],function(){
-	require(['mui','format','getuser','picker','poppicker'],function(mui,format,getuser){
+	require(['mui','format','getuser','getParams','picker','poppicker'],function(mui,format,getuser,getParams){
 		mui.init();
-		var dtPicker,uid,time,dls,cid
+		var dtPicker,uid,time,dls,cid,type=1,last,len
 		    billtime=document.querySelector('#billtime'),
 		    month=new Date().getMonth()*1+1,
 		    day=new Date().getDate();
@@ -9,14 +9,27 @@ require(['../js/config.js'],function(){
 			input=document.querySelector('input'),
 			finish=document.querySelector('#finish'),
 			gallery = mui('.mui-slider'),
-			slidergroup=document.querySelector('.mui-slider-group'),
-			type=1;
+			slidergroup=document.querySelector('.mui-slider-group');
 		init();
+		click();
 		function init(){
 			//初始化日期
 			dtPicker = new mui.DtPicker({ type: "date" });
 			billtime.innerHTML=month+'月'+day+'日';
 			render();
+		}
+		function click(){
+			//点击切换
+			var spans=document.querySelectorAll('.list span');
+			mui('.list').on('tap','span',function(){
+				type=this.dataset.type;
+				spans.forEach(function(v){
+					v.classList.remove('active');
+				});
+				this.classList.add('active');
+				slidergroup.innerHTML='';
+				render();
+			});
 		}
 		function render(){
 			//查询uid
@@ -49,13 +62,13 @@ require(['../js/config.js'],function(){
 				})
 				html+=`</div></div>`;
 				slidergroup.innerHTML=html;
+				//添加自定义
+				last=slidergroup.lastChild;
+				len=Array.from(last.querySelectorAll('dl')).length;
 				//获得slider插件对象
 				gallery.slider({
 				    // interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
 				});
-				//添加自定义
-				var last=slidergroup.lastChild;
-				var len=Array.from(last.querySelectorAll('dl')).length;
 				if(len>8){
 					slidergroup.html+=`<div class="mui-slider-item">
 						<div>
@@ -64,7 +77,8 @@ require(['../js/config.js'],function(){
 								<dd>自定义</dd>
 							</dl>
 						</div></div>;`
-				}else{
+				}
+				else{
 					last.querySelector('div').innerHTML+=`
 					<dl>
 						<dt class="mui-icon mui-icon-plusempty" id="mybtn"></dt>
@@ -72,7 +86,7 @@ require(['../js/config.js'],function(){
 					</dl>`;
 				}
 				document.querySelector('#mybtn').addEventListener('tap',function(){
-					location.href='./classify.html';
+					location.href='./classify.html?type='+type;
 				})
 				dls=Array.from(slidergroup.querySelectorAll('dl'));
 			});
@@ -96,18 +110,6 @@ require(['../js/config.js'],function(){
 					input.value +=txt;
 				}
 			});
-			
-			//点击切换
-			var spans=document.querySelectorAll('.list span');
-			mui('.list').on('tap','span',function(){
-				type=this.dataset.type;
-				spans.forEach(function(v){
-					v.classList.remove('active');
-				});
-				this.classList.add('active');
-				slidergroup.innerHTML='';
-				render();
-			});
 			//点击时间
 			billtime.addEventListener('tap',function(){
 				dtPicker.show(function(selectItems){
@@ -117,14 +119,14 @@ require(['../js/config.js'],function(){
 			//点击
 			mui(slidergroup).on('tap','dl',function(){
 				dls.forEach(function(v){
-					v.classList.remove('active');
+					v.classList.remove('bgcolor');
 				});
-				this.classList.add('active');
+				this.classList.add('bgcolor');
 			})
 			//点击完成
 			finish.addEventListener('tap',function(){
 				var money=input.value;
-				var act=slidergroup.querySelector('.active');
+				var act=slidergroup.querySelector('.bgcolor');
 				var cname=act.querySelector('dt').className;
 				var iname=act.querySelector('dd').innerHTML;
 				cid=slidergroup.querySelector('dl').dataset.id;

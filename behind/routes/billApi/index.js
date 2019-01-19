@@ -67,18 +67,17 @@ var getBill = function(req, res, next) {
                 maxTime = timeArr[0] + '-' + (timeArr[1] * 1 + 1);
             }
         } else { //按年
-            maxTime = time * 1 + 1;
+            maxTime = time * 1 + 1 + '';
         }
     }
-    mongodb.find(dbBase, dbBillColl, { time: { $lt: new Date('2019'), $gte: new Date(time) }, user: user, iname: { $in: iname } }, function(result) {
-        if (result.length > 0) {
-            res.send({ code: 0, message: result })
-        } else {
-            res.send({ code: 1, message: "查询失败" })
-        }
-    }, sort({
-        time: -1
-    }));
+    mongodb.find(dbBase, dbBillColl, { time: { $lt: new Date(maxTime), $gte: new Date(time) }, user: user, iname: { $in: iname } },
+        function(result) {
+            if (result.length > 0) {
+                res.send({ code: 0, data: result })
+            } else {
+                res.send({ code: 1, message: "查询失败" })
+            }
+        }, { sort: { time: 1 } });
 }
 module.exports = {
     billlist: billlist,

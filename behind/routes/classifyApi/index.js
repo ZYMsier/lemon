@@ -45,10 +45,11 @@ var addclassify = function(req, res, next) {
 }
 var getClassify = function(req, res, next) {
     var parmas = req.query;
-    type = parmas.type * 1,
+    type = parmas.type ? parmas.type : [1, 2],
         user = parmas.user;
-    mongodb.find(dbBase, dbClassifyColl, { type: type, user: { $in: ["*", user] } }, function(result) {
-        if (result) {
+    console.log(type)
+    mongodb.find(dbBase, dbClassifyColl, { type: { $in: type }, user: { $in: ["*", user] } }, function(result) {
+        if (result.length > 0) {
             res.send({ code: 0, message: "查询成功", data: result })
         } else {
             res.send({ code: 3, message: "查询失败" })
